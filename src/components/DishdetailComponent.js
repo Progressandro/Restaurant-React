@@ -13,13 +13,15 @@ class DishDetail extends Component {
         if (dish !== null) {
 
             return (
-                <Card>
-                    <CardImg top width="100%" src={dish.image} alt={dish.name}/>
-                    <CardBody>
-                        <CardTitle>{dish.name}</CardTitle>
-                        <CardText>{dish.description}</CardText>
-                    </CardBody>
-                </Card>
+                <div className="col-12 col-md-5 m-1">
+                    <Card>
+                        <CardImg width="100%" src={dish.image} alt={dish.name}/>
+                        <CardBody>
+                            <CardTitle>{dish.name}</CardTitle>
+                            <CardText>{dish.description}</CardText>
+                        </CardBody>
+                    </Card>
+                </div>
             );
         }
         else {
@@ -43,7 +45,7 @@ class DishDetail extends Component {
             });
 
             return (
-                <div>
+                <div className="col-12 col-md-5 m-1">
                     <h4>Comments</h4>
                     {formattedComments}
                 </div>
@@ -59,12 +61,8 @@ class DishDetail extends Component {
         let comments = (dish !== null && dish.hasOwnProperty('comments')) ? dish.comments : undefined;
         return  (
             <div className="row">
-                <div className="col-12 col-sm-5 m-1">
-                    {this.renderDish(dish)}
-                </div>
-                <div className="col-12 col-sm-5 m-1">
-                    {this.renderComments(comments)}
-                </div>
+                {this.renderDish(dish)}
+                {this.renderComments(comments)}
             </div>
         );
     }
