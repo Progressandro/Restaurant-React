@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 
 
 function RenderLeader({leader}) {
-    console.log(leader);
     return(
         <Media className="m-5" tag="li">
             <Media>

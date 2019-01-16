@@ -12,7 +12,7 @@ import About from './AboutComponent';
 const mapStateToProps = (state) => {
     return {
         dishes: state.dishes,
-        comments: state.dishes,
+        comments: state.comments,
         promotions: state.promotions,
         leaders: state.leaders
     };

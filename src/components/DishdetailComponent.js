@@ -25,7 +25,7 @@ import {Link} from 'react-router-dom';
         }
     }
 
-    function RenderComments({comments}) {       
+    function RenderComments({comments}) {  
         if (comments !== undefined && comments.length > 0) {
             let formattedComments = comments.map((singleComment) => {
                 let options = { year: 'numeric', month: 'short', day: 'numeric' };
