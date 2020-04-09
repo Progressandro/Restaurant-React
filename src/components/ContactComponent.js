@@ -17,9 +17,11 @@ class Contact extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleSubmit(values) {
-        console.log('Current State is: ' + JSON.stringify(values));
-        alert('Current State is: ' + JSON.stringify(values));
+    async handleSubmit(values) {
+        const response = await this.props.postFeedback(values);
+        const json = await response.json();
+        const message = response && json ? `Thank you for your feedback! ${JSON.stringify(json)}` : 'Sorry, there was a problem.';
+        alert(message);
         this.props.resetFeedbackForm();
         // event.preventDefault();
     }
