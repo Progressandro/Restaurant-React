@@ -1,17 +1,19 @@
 import React from 'react';
 import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { Loading } from './LoadingComponent';
+import { baseUrl } from '../shared/baseUrl';
 
 
-function RenderLeader({leader}) {
-    return(
+function RenderLeader({ leader }) {
+    return (
         <Media className="m-5" tag="li">
             <Media>
-                <Media object className="mr-5" src={leader.image} alt={leader.name}></Media>
+                <Media object className="mr-5" src={baseUrl + leader.image} alt={leader.name}></Media>
                 <Media body>
                     <Media heading>{leader.name}</Media>
                     <p>{leader.designation}</p>
-                    
+
                     <p>{leader.description}</p>
                 </Media>
             </Media>
@@ -20,13 +22,34 @@ function RenderLeader({leader}) {
 }
 function About(props) {
 
-    const leaders = props.leaders.map((leader) => {
-        return (
-            <RenderLeader key={leader.id} leader={leader}/>
-        );
+    const leaders = props.leaders.leaders.map((leader) => {
+        if (props.leaders.isLoading) {
+            return (
+                <div className="container">
+                    <div className="row">
+                        <Loading />
+                    </div>
+                </div>
+            );
+        }
+        else if (props.leaders.errMess) {
+            return (
+                <div className="container">
+                    <div className="row">
+                        <div className="col-12">
+                            <h4>{props.leaders.errMess}</h4>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+        else
+            return (
+                <RenderLeader key={leader.id} leader={leader} />
+            );
     });
 
-    return(
+    return (
         <div className="container">
             <div className="row">
                 <Breadcrumb>
@@ -36,7 +59,7 @@ function About(props) {
                 <div className="col-12">
                     <h3>About Us</h3>
                     <hr />
-                </div>                
+                </div>
             </div>
             <div className="row row-content">
                 <div className="col-12 col-md-6">
