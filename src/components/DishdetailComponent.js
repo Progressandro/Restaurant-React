@@ -3,6 +3,7 @@ import { Row, Col, Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, Bre
 import { Link } from 'react-router-dom';
 import { Control, LocalForm, Errors } from 'react-redux-form';
 import { Loading } from './LoadingComponent';
+import { baseUrl } from '../shared/baseUrl';
 
 function RenderDish({ dish }) {
     if (dish !== null) {
@@ -10,7 +11,7 @@ function RenderDish({ dish }) {
         return (
             <div className="col-12 col-md-5 m-1">
                 <Card>
-                    <CardImg width="100%" src={dish.image} alt={dish.name} />
+                    <CardImg top src={baseUrl + dish.image} alt={dish.name} />
                     <CardBody>
                         <CardTitle>{dish.name}</CardTitle>
                         <CardText>{dish.description}</CardText>
